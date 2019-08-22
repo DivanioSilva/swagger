@@ -3,6 +3,7 @@ package com.ds.swagger.controllers.person;
 import com.ds.swagger.dto.PersonDTO;
 import com.ds.swagger.entities.Person;
 import com.ds.swagger.exceptions.PersonNotFoundException;
+import com.ds.swagger.exceptions.ValidationException;
 import com.ds.swagger.exceptions.WrongPrimaryKeysException;
 import com.ds.swagger.mapper.IPersonMapper;
 import com.ds.swagger.service.PersonService;
@@ -35,7 +36,7 @@ public class PersonController {
     }
 
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public PersonDTO post(@RequestBody PersonDTO personDTO){
+    public PersonDTO post(@RequestBody PersonDTO personDTO) throws ValidationException {
         LOGGER.log(Level.INFO, "DTO : " +personDTO);
 
         Person p = mapper.personDTOToPerson(personDTO);
@@ -45,7 +46,7 @@ public class PersonController {
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public PersonDTO put(@PathVariable Long id, @RequestBody PersonDTO person) throws WrongPrimaryKeysException, PersonNotFoundException {
+    public PersonDTO put(@PathVariable Long id, @RequestBody PersonDTO person) throws WrongPrimaryKeysException, PersonNotFoundException, ValidationException {
         Person p = service.update(id, mapper.personDTOToPerson(person));
 
         return mapper.personToPersonDTO(p);
@@ -64,7 +65,7 @@ public class PersonController {
     }
 
     @GetMapping(value = "/custom/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person customGet(@PathVariable("name") String name){
+    public Person customGet(@PathVariable("name") String name) throws ValidationException {
         return service.findByNameV2(name);
     }
 

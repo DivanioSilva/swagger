@@ -1,5 +1,6 @@
 package com.ds.swagger.entities;
 
+import com.ds.swagger.validations.NameValidator;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,7 @@ public class Person implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NameValidator()
     private String name;
     private Integer age;
     private String city;
