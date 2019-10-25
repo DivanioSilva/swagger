@@ -63,7 +63,10 @@ public class ServiceInvoker {
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<PersonDTO>>(){});
-        List<PersonDTO> employees = response.getBody();
+        List<PersonDTO> persons = response.getBody();
+
+        persons.forEach(System.out::println);
+
         System.out.println();
     }
 }

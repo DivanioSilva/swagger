@@ -21,5 +21,6 @@ public class OtherMain implements CommandLineRunner {
         System.out.println("PUMBA");
         //invoker.callExternalService();
         invoker.findAllUsers();
+        System.exit(0);
     }
 }
