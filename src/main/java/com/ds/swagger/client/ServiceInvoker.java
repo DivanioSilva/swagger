@@ -25,11 +25,9 @@ public class ServiceInvoker {
         this.restTemplate = restTemplate;
     }
 
-    public void callExternalService(){
+    public void callAnExternalServicePost(){
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        //HttpEntity<Foo> request = new HttpEntity<>(new Foo("bar"));
-        //Foo foo = restTemplate.postForObject(fooResourceUrl, request, Foo.class);
         String message = String.format("Calling %s", uri);
         LOGGER.info(message);
 
@@ -57,7 +55,7 @@ public class ServiceInvoker {
          */
     }
 
-    public void findAllUsers(){
+    public void callAnExternalServiceGetAll(){
         ResponseEntity<List<PersonDTO>> response = restTemplate.exchange(
                 uri,
                 HttpMethod.GET,

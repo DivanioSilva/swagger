@@ -20,7 +20,7 @@ public class OtherMain implements CommandLineRunner {
     public void run(String... args) throws Exception {
         System.out.println("PUMBA");
         //invoker.callExternalService();
-        invoker.findAllUsers();
+        invoker.callAnExternalServiceGetAll();
         System.exit(0);
     }
 }
